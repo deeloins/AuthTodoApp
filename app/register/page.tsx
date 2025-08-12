@@ -56,7 +56,7 @@ export default function RegisterPage() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="bg-gray-100 p-8 rounded-lg shadow-lg w-96 h-100"
+        className="bg-gray-100 p-8 rounded-lg shadow-lg w-96 h-110"
         autoComplete="off"
       >
         <h2 className="text-4xl text-center font-bold mt-6 mb-10 text-cyan-900">
@@ -86,7 +86,7 @@ export default function RegisterPage() {
           Already have an account?{" "}
           <a 
             href="/login" 
-            className="text-cyan-600 pb-6 hover:text-cyan-800 cursor-pointer"
+            className="text-cyan-600 mb-6 hover:text-cyan-800 cursor-pointer"
           >
             Sign in here
           </a>
