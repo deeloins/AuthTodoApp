@@ -38,9 +38,19 @@ export default function LoginPage() {
       formRef.current?.reset();
       setError("");
       router.push("/todos");
-    } catch (err: any) {
-      if (err.response?.data?.message) {
-        setError(`Login failed: ${err.response.data.message}`);
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (err as any).response === "object" &&
+        (err as any).response !== null &&
+        "data" in (err as any).response &&
+        typeof (err as any).response.data === "object" &&
+        (err as any).response.data !== null &&
+        "message" in (err as any).response.data
+      ) {
+        setError(`Login failed: ${(err as any).response.data.message}`);
       } else {
         setError("Invalid email or password. Please try again.");
       }
@@ -86,7 +96,7 @@ export default function LoginPage() {
           Login
         </button>
         <p className="text-center mt-4 text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <a 
             href="/register" 
             className="text-cyan-600 hover:text-cyan-800 cursor-pointer"

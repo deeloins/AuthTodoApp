@@ -19,7 +19,7 @@ export default function TodosPage() {
       return;
     }
     fetchTodos();
-  }, [token]);
+  }, [token,router]);
 
   const fetchTodos = async () => {
     try {

@@ -35,9 +35,19 @@ export default function RegisterPage() {
       formRef.current?.reset();
       setError("");
       router.push("/login");
-    } catch (err: any) {
-      if (err.response?.data?.message) {
-        setError(err.response.data.message);
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (err as any).response === "object" &&
+        (err as any).response !== null &&
+        "data" in (err as any).response &&
+        typeof (err as any).response.data === "object" &&
+        (err as any).response.data !== null &&
+        "message" in (err as any).response.data
+      ) {
+        setError((err as any).response.data.message);
       } else {
         setError("Registration failed. Please try again.");
       }
